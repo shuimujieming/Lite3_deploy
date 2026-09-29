@@ -1,0 +1,2 @@
+/usr/bin/ar qc librun_policy.a  CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o
+/usr/bin/ranlib librun_policy.a

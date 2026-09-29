@@ -110,7 +110,7 @@ Lite3TestPolicyRunnerONNX::Lite3TestPolicyRunnerONNX(std::string policy_name)
 
 
     kp_ = 30. * VecXf::Ones(12);
-    kd_ =  1. * VecXf::Ones(12);
+    kd_ =  1.0 * VecXf::Ones(12);
     max_cmd_vel_ << 2.0, 2.0, 0.8;
 
     current_obs_.setZero();
