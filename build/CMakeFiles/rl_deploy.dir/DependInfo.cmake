@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/shuimujieming/project/Lite3_rl_deploy/main.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/CMakeFiles/rl_deploy.dir/main.cpp.o"
-  "/home/shuimujieming/project/Lite3_rl_deploy/state_machine/parameters/lite3_control_parameters.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/main.cpp" "/home/shuimujieming/Lite3_deploy/build/CMakeFiles/rl_deploy.dir/main.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp" "/home/shuimujieming/Lite3_deploy/build/CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -33,8 +33,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/shuimujieming/project/Lite3_rl_deploy/build/CMakeFiles/run_policy.dir/DependInfo.cmake"
-  "/home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/interface.dir/DependInfo.cmake"
+  "/home/shuimujieming/Lite3_deploy/build/CMakeFiles/run_policy.dir/DependInfo.cmake"
+  "/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

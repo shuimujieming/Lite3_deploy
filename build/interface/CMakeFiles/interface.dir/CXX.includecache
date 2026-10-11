@@ -2698,15 +2698,15 @@ vector
 cstdint
 -
 
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/Lite3_MotionSDK/src/motionexample.cpp
+/home/shuimujieming/Lite3_deploy/third_party/Lite3_MotionSDK/src/motionexample.cpp
 motionexample.h
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/Lite3_MotionSDK/src/motionexample.h
+/home/shuimujieming/Lite3_deploy/third_party/Lite3_MotionSDK/src/motionexample.h
 
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/gamepad.cpp
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/gamepad.cpp
 gamepad.h
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/gamepad.h
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/gamepad.h
 udp_receiver.h
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/udp_receiver.h
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/udp_receiver.h
 iostream
 -
 thread
@@ -2714,9 +2714,9 @@ thread
 chrono
 -
 
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/retroid_gamepad.cpp
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/retroid_gamepad.cpp
 retroid_gamepad.h
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/retroid_gamepad.h
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/retroid_gamepad.h
 cstdlib
 -
 stdio.h
@@ -2726,9 +2726,9 @@ string.h
 bitset
 -
 
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/skydroid_gamepad.cpp
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/skydroid_gamepad.cpp
 skydroid_gamepad.h
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/skydroid_gamepad.h
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/skydroid_gamepad.h
 cstdlib
 -
 stdio.h
@@ -2738,9 +2738,9 @@ string.h
 bitset
 -
 
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/udp_receiver.cpp
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/udp_receiver.cpp
 udp_receiver.h
-/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/udp_receiver.h
+/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/udp_receiver.h
 iostream
 -
 cstring

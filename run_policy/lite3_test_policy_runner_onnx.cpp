@@ -111,7 +111,7 @@ Lite3TestPolicyRunnerONNX::Lite3TestPolicyRunnerONNX(std::string policy_name)
 
     kp_ = 30. * VecXf::Ones(12);
     kd_ =  1.0 * VecXf::Ones(12);
-    max_cmd_vel_ << 2.0, 2.0, 0.8;
+    max_cmd_vel_ << 1.5, 1.5, 0.8;
 
     current_obs_.setZero();
     obs_history_.setZero();
@@ -179,7 +179,7 @@ RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro)
     Vec3f base_omega       = ro.base_omega * omega_scale_;
     Vec3f projected_gravity = ro.base_rot_mat.inverse() * gravity_direction;
     Vec3f cmd_vel          = ro.cmd_vel_normlized.cwiseProduct(max_cmd_vel_);
-
+        
     for (int i = 0; i < act_dim_; ++i) {
         joint_pos_rl(i) = ro.joint_pos(robot2policy_idx[i]);
         joint_vel_rl(i) = ro.joint_vel(robot2policy_idx[i]) * dof_vel_scale_;
@@ -194,10 +194,8 @@ RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro)
                     joint_vel_rl,
                     last_action;
 
-    // Match the training-side layout:
-    // torch.cat([obs_buf, obs_history_buf.view(num_envs, -1)], dim=-1).
-    // The history buffer is chronological (oldest -> newest), so the input is
-    // [current, oldest_history, ..., newest_history].
+    // The history buffer is ordered from newest to oldest, so the input is
+    // [t, t-1, t-2, t-3, t-4] (or zero for unavailable early frames).
     policy_input_.head(single_obs_dim_) = current_obs_;
     policy_input_.tail(obs_history_.size()) = obs_history_;
 
@@ -221,21 +219,13 @@ RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro)
     action      = VecXf(act);
     last_action = action;
 
-    // Match:
-    //   episode_length <= 1: stack([obs_buf] * history_len)
-    //   otherwise: cat([history[:, 1:], obs_buf.unsqueeze(1)], dim=1)
-    if (run_cnt_ <= 1) {
-        for (int frame = 0; frame < history_frames_; ++frame) {
-            obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
-                current_obs_;
-        }
-    } else {
-        for (int frame = 0; frame < history_frames_ - 1; ++frame) {
-            obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
-                obs_history_.segment((frame + 1) * single_obs_dim_, single_obs_dim_);
-        }
-        obs_history_.tail(single_obs_dim_) = current_obs_;
+    // Keep the newest observation first: after this update history is
+    // [t, t-1, t-2, t-3], ready for the next inference call.
+    for (int frame = history_frames_ - 1; frame > 0; --frame) {
+        obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
+            obs_history_.segment((frame - 1) * single_obs_dim_, single_obs_dim_);
     }
+    obs_history_.head(single_obs_dim_) = current_obs_;
 
     for (int i = 0; i < act_dim_; ++i) {
         tmp_action(i)  = action(policy2robot_idx[i]);

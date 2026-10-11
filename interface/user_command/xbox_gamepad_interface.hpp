@@ -13,9 +13,6 @@
 #include <cstring>
 #include <iostream>
 
-#define AXIS_STEP 0.1
-#define JOYSTICK_DEADZONE 0.1
-
 using namespace interface;
 using namespace types;
 
@@ -58,20 +55,10 @@ private:
         if(num > up) num = up;
     }
 
-    float ApplyDeadzone(float value, float deadzone = JOYSTICK_DEADZONE){
-        if(std::abs(value) < deadzone) return 0.0f;
-        return (value - std::copysign(deadzone, value)) / (1.0f - deadzone);
-    }
-
-    double GetCurrentTimeStamp(){
-        static timespec startup_timestamp;
-        timespec now_timestamp;
-        if (startup_timestamp.tv_sec + startup_timestamp.tv_nsec == 0) {
-            clock_gettime(CLOCK_MONOTONIC,&startup_timestamp);
-        }
-        clock_gettime(CLOCK_MONOTONIC,&now_timestamp);
-        return (now_timestamp.tv_sec-startup_timestamp.tv_sec)*1e3 
-            + (now_timestamp.tv_nsec-startup_timestamp.tv_nsec)/1e6;
+    float NormalizeAxis(int16_t value){
+        float normalized = static_cast<float>(value) / 32767.0f;
+        ClipNumber(normalized, -1.0f, 1.0f);
+        return normalized;
     }
 
 public:
@@ -160,10 +147,6 @@ public:
 
     void Run(){
         js_event js_ev;
-        double forward_time_record = GetCurrentTimeStamp();
-        double side_time_record = GetCurrentTimeStamp();
-        double turning_time_record = GetCurrentTimeStamp();
-        
         bool lb_prev = false;
         bool rb_prev = false;
         bool lt_prev = false;
@@ -182,16 +165,16 @@ public:
                         if(is_bluetooth_){
                             switch(js_ev.number){
                                 case 0: // Left stick X
-                                    gp_state_.left_axis_x = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.left_axis_x = NormalizeAxis(js_ev.value);
                                     break;
                                 case 1: // Left stick Y
-                                    gp_state_.left_axis_y = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.left_axis_y = NormalizeAxis(js_ev.value);
                                     break;
                                 case 2: // Right stick X
-                                    gp_state_.right_axis_x = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.right_axis_x = NormalizeAxis(js_ev.value);
                                     break;
                                 case 3: // Right stick Y
-                                    gp_state_.right_axis_y = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.right_axis_y = NormalizeAxis(js_ev.value);
                                     break;
                                 case 4: // RT (Right Trigger)
                                     break;
@@ -202,19 +185,19 @@ public:
                         } else {
                             switch(js_ev.number){
                                 case 0: // Left stick X
-                                    gp_state_.left_axis_x = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.left_axis_x = NormalizeAxis(js_ev.value);
                                     break;
                                 case 1: // Left stick Y
-                                    gp_state_.left_axis_y = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.left_axis_y = NormalizeAxis(js_ev.value);
                                     break;
                                 case 2: // LT (Left Trigger)
                                     gp_state_.lt_pressed = (js_ev.value > 10000);
                                     break;
                                 case 3: // Right stick Y
-                                    gp_state_.right_axis_y = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.right_axis_y = NormalizeAxis(js_ev.value);
                                     break;
                                 case 4: // Right stick X
-                                    gp_state_.right_axis_x = ApplyDeadzone(js_ev.value / 32767.0f);
+                                    gp_state_.right_axis_x = NormalizeAxis(js_ev.value);
                                     break;
                                 case 5: // RT (Right Trigger)
                                     break;
@@ -301,34 +284,14 @@ public:
                         std::cout << "[Gamepad] X pressed -> LieDown" << std::endl;
                     }
                     
-                    double current_time = GetCurrentTimeStamp();
-                    
+                    // Match Retroid: publish the current normalized axes on
+                    // every loop, including zero immediately after release.
                     float forward_input = -gp_state_.left_axis_y;
-                    float side_input = gp_state_.left_axis_x;
-                    float turning_input = -gp_state_.right_axis_x;
-                    
-                    if(std::abs(forward_input) > 0.01){
-                        usr_cmd_.forward_vel_scale = forward_input;
-                        forward_time_record = current_time;
-                    }
-                    
-                    if(std::abs(side_input) > 0.01){
-                        usr_cmd_.side_vel_scale = side_input;
-                        side_time_record = current_time;
-                    }
-                    
-                    if(std::abs(turning_input) > 0.01){
-                        usr_cmd_.turnning_vel_scale = turning_input;
-                        turning_time_record = current_time;
-                    }
-                    
-                    if(current_time - forward_time_record > 300.) usr_cmd_.forward_vel_scale = 0;
-                    if(current_time - side_time_record > 300.) usr_cmd_.side_vel_scale = 0;
-                    if(current_time - turning_time_record > 300.) usr_cmd_.turnning_vel_scale = 0;
-
-                    ClipNumber(usr_cmd_.forward_vel_scale, -1., 1.);
-                    ClipNumber(usr_cmd_.side_vel_scale, -1., 1.);
-                    ClipNumber(usr_cmd_.turnning_vel_scale, -1., 1.);
+                    float side_input = -gp_state_.left_axis_x;
+                    float turning_input = -gp_state_.right_axis_y;
+                    usr_cmd_.forward_vel_scale = forward_input;
+                    usr_cmd_.side_vel_scale = side_input;
+                    usr_cmd_.turnning_vel_scale = turning_input;
                     break;
                 }
                     

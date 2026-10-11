@@ -39,7 +39,7 @@ private:
     std::string model_path_;
 
     static constexpr int single_obs_dim_ = 45;
-    static constexpr int history_frames_ = 10;
+    static constexpr int history_frames_ = 4;
     static constexpr int obs_dim_ = single_obs_dim_ * (history_frames_ + 1);
     static constexpr int act_dim_ = 12;
 

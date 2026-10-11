@@ -382,6 +382,6 @@ CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o
  ../types/common_types.h
  ../types/custom_types.h
  ../utils/basic_function.hpp
- /home/shuimujieming/project/Lite3_rl_deploy/run_policy/lite3_test_policy_runner_onnx.cpp
- /home/shuimujieming/project/Lite3_rl_deploy/run_policy/lite3_test_policy_runner_onnx.h
- /home/shuimujieming/project/Lite3_rl_deploy/run_policy/policy_runner_base.hpp
+ /home/shuimujieming/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp
+ /home/shuimujieming/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.h
+ /home/shuimujieming/Lite3_deploy/run_policy/policy_runner_base.hpp

@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/shuimujieming/project/Lite3_rl_deploy/third_party/Lite3_MotionSDK/src/motionexample.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.o"
-  "/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/gamepad.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.o"
-  "/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/retroid_gamepad.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.o"
-  "/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/skydroid_gamepad.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.o"
-  "/home/shuimujieming/project/Lite3_rl_deploy/third_party/gamepad/src/udp_receiver.cpp" "/home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/third_party/Lite3_MotionSDK/src/motionexample.cpp" "/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/gamepad.cpp" "/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/retroid_gamepad.cpp" "/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/skydroid_gamepad.cpp" "/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.o"
+  "/home/shuimujieming/Lite3_deploy/third_party/gamepad/src/udp_receiver.cpp" "/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

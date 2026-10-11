@@ -8,9 +8,9 @@
     </mujoco>
     <link name="TORSO">
         <inertial>
-            <origin/>
-            <mass value="5.6056"/>
-            <inertia ixx="0.02456" ixy="0" ixz="0" iyy="0.05518" iyz="0" izz="0.07016"/>
+            <origin xyz="-0.10 0 0"/>
+            <mass value="8.6056"/>
+            <inertia ixx="0.03770400" ixy="0" ixz="0" iyy="0.08471118" iyz="0" izz="0.10770817"/>
         </inertial>
         <visual>
             <geometry>

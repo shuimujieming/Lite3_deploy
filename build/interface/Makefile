@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shuimujieming/project/Lite3_rl_deploy
+CMAKE_SOURCE_DIR = /home/shuimujieming/Lite3_deploy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shuimujieming/project/Lite3_rl_deploy/build
+CMAKE_BINARY_DIR = /home/shuimujieming/Lite3_deploy/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/project/Lite3_rl_deploy/build/CMakeFiles /home/shuimujieming/project/Lite3_rl_deploy/build/interface/CMakeFiles/progress.marks
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/project/Lite3_rl_deploy/build/CMakeFiles 0
+	cd /home/shuimujieming/Lite3_deploy/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles /home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/progress.marks
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/clean
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/preinstall
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/preinstall
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/shuimujieming/Lite3_deploy/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 interface/CMakeFiles/interface.dir/rule:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/CMakeFiles/interface.dir/rule
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f CMakeFiles/Makefile2 interface/CMakeFiles/interface.dir/rule
 .PHONY : interface/CMakeFiles/interface.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ interface: interface/CMakeFiles/interface.dir/rule
 
 # fast build rule for target.
 interface/fast:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/build
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/build
 .PHONY : interface/fast
 
 __/third_party/Lite3_MotionSDK/src/motionexample.o: __/third_party/Lite3_MotionSDK/src/motionexample.cpp.o
@@ -131,7 +131,7 @@ __/third_party/Lite3_MotionSDK/src/motionexample.o: __/third_party/Lite3_MotionS
 
 # target to build an object file
 __/third_party/Lite3_MotionSDK/src/motionexample.cpp.o:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.o
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.o
 .PHONY : __/third_party/Lite3_MotionSDK/src/motionexample.cpp.o
 
 __/third_party/Lite3_MotionSDK/src/motionexample.i: __/third_party/Lite3_MotionSDK/src/motionexample.cpp.i
@@ -140,7 +140,7 @@ __/third_party/Lite3_MotionSDK/src/motionexample.i: __/third_party/Lite3_MotionS
 
 # target to preprocess a source file
 __/third_party/Lite3_MotionSDK/src/motionexample.cpp.i:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.i
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.i
 .PHONY : __/third_party/Lite3_MotionSDK/src/motionexample.cpp.i
 
 __/third_party/Lite3_MotionSDK/src/motionexample.s: __/third_party/Lite3_MotionSDK/src/motionexample.cpp.s
@@ -149,7 +149,7 @@ __/third_party/Lite3_MotionSDK/src/motionexample.s: __/third_party/Lite3_MotionS
 
 # target to generate assembly for a file
 __/third_party/Lite3_MotionSDK/src/motionexample.cpp.s:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.s
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexample.cpp.s
 .PHONY : __/third_party/Lite3_MotionSDK/src/motionexample.cpp.s
 
 __/third_party/gamepad/src/gamepad.o: __/third_party/gamepad/src/gamepad.cpp.o
@@ -158,7 +158,7 @@ __/third_party/gamepad/src/gamepad.o: __/third_party/gamepad/src/gamepad.cpp.o
 
 # target to build an object file
 __/third_party/gamepad/src/gamepad.cpp.o:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.o
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.o
 .PHONY : __/third_party/gamepad/src/gamepad.cpp.o
 
 __/third_party/gamepad/src/gamepad.i: __/third_party/gamepad/src/gamepad.cpp.i
@@ -167,7 +167,7 @@ __/third_party/gamepad/src/gamepad.i: __/third_party/gamepad/src/gamepad.cpp.i
 
 # target to preprocess a source file
 __/third_party/gamepad/src/gamepad.cpp.i:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.i
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.i
 .PHONY : __/third_party/gamepad/src/gamepad.cpp.i
 
 __/third_party/gamepad/src/gamepad.s: __/third_party/gamepad/src/gamepad.cpp.s
@@ -176,7 +176,7 @@ __/third_party/gamepad/src/gamepad.s: __/third_party/gamepad/src/gamepad.cpp.s
 
 # target to generate assembly for a file
 __/third_party/gamepad/src/gamepad.cpp.s:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.s
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.s
 .PHONY : __/third_party/gamepad/src/gamepad.cpp.s
 
 __/third_party/gamepad/src/retroid_gamepad.o: __/third_party/gamepad/src/retroid_gamepad.cpp.o
@@ -185,7 +185,7 @@ __/third_party/gamepad/src/retroid_gamepad.o: __/third_party/gamepad/src/retroid
 
 # target to build an object file
 __/third_party/gamepad/src/retroid_gamepad.cpp.o:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.o
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.o
 .PHONY : __/third_party/gamepad/src/retroid_gamepad.cpp.o
 
 __/third_party/gamepad/src/retroid_gamepad.i: __/third_party/gamepad/src/retroid_gamepad.cpp.i
@@ -194,7 +194,7 @@ __/third_party/gamepad/src/retroid_gamepad.i: __/third_party/gamepad/src/retroid
 
 # target to preprocess a source file
 __/third_party/gamepad/src/retroid_gamepad.cpp.i:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.i
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.i
 .PHONY : __/third_party/gamepad/src/retroid_gamepad.cpp.i
 
 __/third_party/gamepad/src/retroid_gamepad.s: __/third_party/gamepad/src/retroid_gamepad.cpp.s
@@ -203,7 +203,7 @@ __/third_party/gamepad/src/retroid_gamepad.s: __/third_party/gamepad/src/retroid
 
 # target to generate assembly for a file
 __/third_party/gamepad/src/retroid_gamepad.cpp.s:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.s
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.s
 .PHONY : __/third_party/gamepad/src/retroid_gamepad.cpp.s
 
 __/third_party/gamepad/src/skydroid_gamepad.o: __/third_party/gamepad/src/skydroid_gamepad.cpp.o
@@ -212,7 +212,7 @@ __/third_party/gamepad/src/skydroid_gamepad.o: __/third_party/gamepad/src/skydro
 
 # target to build an object file
 __/third_party/gamepad/src/skydroid_gamepad.cpp.o:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.o
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.o
 .PHONY : __/third_party/gamepad/src/skydroid_gamepad.cpp.o
 
 __/third_party/gamepad/src/skydroid_gamepad.i: __/third_party/gamepad/src/skydroid_gamepad.cpp.i
@@ -221,7 +221,7 @@ __/third_party/gamepad/src/skydroid_gamepad.i: __/third_party/gamepad/src/skydro
 
 # target to preprocess a source file
 __/third_party/gamepad/src/skydroid_gamepad.cpp.i:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.i
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.i
 .PHONY : __/third_party/gamepad/src/skydroid_gamepad.cpp.i
 
 __/third_party/gamepad/src/skydroid_gamepad.s: __/third_party/gamepad/src/skydroid_gamepad.cpp.s
@@ -230,7 +230,7 @@ __/third_party/gamepad/src/skydroid_gamepad.s: __/third_party/gamepad/src/skydro
 
 # target to generate assembly for a file
 __/third_party/gamepad/src/skydroid_gamepad.cpp.s:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.s
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.s
 .PHONY : __/third_party/gamepad/src/skydroid_gamepad.cpp.s
 
 __/third_party/gamepad/src/udp_receiver.o: __/third_party/gamepad/src/udp_receiver.cpp.o
@@ -239,7 +239,7 @@ __/third_party/gamepad/src/udp_receiver.o: __/third_party/gamepad/src/udp_receiv
 
 # target to build an object file
 __/third_party/gamepad/src/udp_receiver.cpp.o:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.o
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.o
 .PHONY : __/third_party/gamepad/src/udp_receiver.cpp.o
 
 __/third_party/gamepad/src/udp_receiver.i: __/third_party/gamepad/src/udp_receiver.cpp.i
@@ -248,7 +248,7 @@ __/third_party/gamepad/src/udp_receiver.i: __/third_party/gamepad/src/udp_receiv
 
 # target to preprocess a source file
 __/third_party/gamepad/src/udp_receiver.cpp.i:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.i
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.i
 .PHONY : __/third_party/gamepad/src/udp_receiver.cpp.i
 
 __/third_party/gamepad/src/udp_receiver.s: __/third_party/gamepad/src/udp_receiver.cpp.s
@@ -257,7 +257,7 @@ __/third_party/gamepad/src/udp_receiver.s: __/third_party/gamepad/src/udp_receiv
 
 # target to generate assembly for a file
 __/third_party/gamepad/src/udp_receiver.cpp.s:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.s
+	cd /home/shuimujieming/Lite3_deploy/build && $(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.s
 .PHONY : __/third_party/gamepad/src/udp_receiver.cpp.s
 
 # Help Target
@@ -295,6 +295,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/shuimujieming/project/Lite3_rl_deploy/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/shuimujieming/Lite3_deploy/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
