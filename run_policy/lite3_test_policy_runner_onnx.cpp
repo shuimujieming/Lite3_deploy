@@ -187,17 +187,28 @@ RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro)
     joint_pos_rl -= dof_pos_default_policy;
 
     current_obs_.setZero();
-    current_obs_ << base_omega,
+    current_obs_ << 
+                    base_omega,
                     projected_gravity,
                     cmd_vel,
                     joint_pos_rl,
                     joint_vel_rl,
                     last_action;
 
-    // The history buffer is ordered from newest to oldest, so the input is
-    // [t, t-1, t-2, t-3, t-4] (or zero for unavailable early frames).
-    policy_input_.head(single_obs_dim_) = current_obs_;
-    policy_input_.tail(obs_history_.size()) = obs_history_;
+    // Initialize missing history with the first observation, then shift normally.
+    if (run_cnt_ == 0) {
+        for (int frame = 0; frame < history_frames_; ++frame) {
+            obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) = current_obs_;
+        }
+    } else {
+        for (int frame = history_frames_ - 1; frame > 0; --frame) {
+            obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
+                obs_history_.segment((frame - 1) * single_obs_dim_, single_obs_dim_);
+        }
+        obs_history_.head(single_obs_dim_) = current_obs_;
+    }
+    // Present the model with frames newest first: [t, ..., t-5].
+    policy_input_ = obs_history_;
 
     std::array<int64_t, 2> input_shape{1, obs_dim_};
 
@@ -219,13 +230,22 @@ RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro)
     action      = VecXf(act);
     last_action = action;
 
-    // Keep the newest observation first: after this update history is
-    // [t, t-1, t-2, t-3], ready for the next inference call.
-    for (int frame = history_frames_ - 1; frame > 0; --frame) {
-        obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
-            obs_history_.segment((frame - 1) * single_obs_dim_, single_obs_dim_);
-    }
-    obs_history_.head(single_obs_dim_) = current_obs_;
+        // Match:
+    //   episode_length <= 1: stack([obs_buf] * history_len)
+    //   otherwise: cat([history[:, 1:], obs_buf.unsqueeze(1)], dim=1)
+    // if (run_cnt_ <= 1) {
+    //     for (int frame = 0; frame < history_frames_; ++frame) {
+    //         obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
+    //             current_obs_;
+    //     }
+    // } else {
+    //     for (int frame = 0; frame < history_frames_ - 1; ++frame) {
+    //         obs_history_.segment(frame * single_obs_dim_, single_obs_dim_) =
+    //             obs_history_.segment((frame + 1) * single_obs_dim_, single_obs_dim_);
+    //     }
+    //     obs_history_.tail(single_obs_dim_) = current_obs_;
+    // }
+
 
     for (int i = 0; i < act_dim_; ++i) {
         tmp_action(i)  = action(policy2robot_idx[i]);

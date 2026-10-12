@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mujoco model="ramp_terrain">
+    <worldbody>
+        <!-- Ramps rise away from the robot along negative X; each has a 6 m width. -->
+        <body name="ramp_15deg" pos="0 6.2 0">
+            <geom name="ramp15_slope" type="box" pos="-2.4 0 0.221836" size="0.931748 3.0 0.02" quat="0.9914448614 0 0.1305261922 0" rgba="0.55 0.7 0.65 1"/>
+            <geom name="ramp15_platform" type="box" pos="-5.8 0 0.241154" size="2.5 3.0 0.241154" rgba="0.55 0.7 0.65 1"/>
+        </body>
+
+        <body name="ramp_30deg" pos="0 0 0">
+            <geom name="ramp30_slope" type="box" pos="-2.4 0 0.502295" size="1.039230 3.0 0.02" quat="0.9659258263 0 0.2588190451 0" rgba="0.45 0.6 0.65 1"/>
+            <geom name="ramp30_platform" type="box" pos="-5.8 0 0.519615" size="2.5 3.0 0.519615" rgba="0.45 0.6 0.65 1"/>
+        </body>
+
+        <body name="ramp_45deg" pos="0 -6.2 0">
+            <geom name="ramp45_slope" type="box" pos="-2.4 0 0.885858" size="1.272792 3.0 0.02" quat="0.9238795325 0 0.3826834324 0" rgba="0.55 0.55 0.7 1"/>
+            <geom name="ramp45_platform" type="box" pos="-5.8 0 0.9" size="2.5 3.0 0.9" rgba="0.55 0.55 0.7 1"/>
+        </body>
+    </worldbody>
+</mujoco>

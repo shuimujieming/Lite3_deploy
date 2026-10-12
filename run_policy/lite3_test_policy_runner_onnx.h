@@ -39,8 +39,10 @@ private:
     std::string model_path_;
 
     static constexpr int single_obs_dim_ = 45;
-    static constexpr int history_frames_ = 4;
-    static constexpr int obs_dim_ = single_obs_dim_ * (history_frames_ + 1);
+    // static constexpr int history_frames_ = 4;
+    static constexpr int history_frames_ = 5;
+
+    static constexpr int obs_dim_ = single_obs_dim_ * (history_frames_);
     static constexpr int act_dim_ = 12;
 
     VecXf current_obs_;

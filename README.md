@@ -71,12 +71,14 @@ tips：可以将仿真器窗口设为始终位于最上层，方便可视化
 uc_ptr_ = std::make_shared<KeyboardInterface>();
 ```
 修改ip：进入jy_exe/conf/network.toml，修改ip为以下内容
+ip 192.168.1.120 是运控在机器人运动主机上运行
+ip 192.168.1.102 是遥控器连接的wifi地址
 ```bash
-ip = '192.168.2.1'
+ip = '192.168.1.120'
 target_port = 43897
 local_port = 43893
 
-ips = ['192.168.1.103']
+ips = ['192.168.1.102']
 ports = [43897]
 ```
 ```bash
@@ -85,15 +87,16 @@ ports = [43897]
 # WiFi密码为 12345678 (一般为这个，如有问题联系技术支持)
 
 # scp传输文件 (打开本地电脑终端)
-scp -r ~/Lite3_rl_deploy ysc@192.168.2.1:~/
+scp -r ~/Lite3_deploy firefly@192.168.1.120:~/
 # ssh连接机器狗运动主机以远程开发
 #Username	Password
 #ysc		' (a single quote)
-ssh ysc@192.168.2.1
+ssh firefly@192.168.1.120
 # 输入密码后会进入远程开发模式
 
 # 编译
-cd Lite3_rl_deploy
+cd Lite3_deploy/
+rm -rf build/
 mkdir build && cd build
 cmake .. -DBUILD_PLATFORM=arm -DBUILD_SIM=OFF -DSEND_REMOTE=OFF
 # 指令解释

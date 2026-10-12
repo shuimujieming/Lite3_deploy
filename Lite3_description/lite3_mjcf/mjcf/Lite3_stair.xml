@@ -1,5 +1,9 @@
 <mujoco model="Lite3_stair">
+    <compiler meshdir="../../../third_party/deep_robotics_model/Lite3/Lite3_mjcf/mjcf"/>
+    <asset>
+        <material name="visualgeom" rgba="0.7 0.7 0.7 1"/>
+    </asset>
     <include file="../../../third_party/deep_robotics_model/Lite3/Lite3_mjcf/mjcf/Lite3.xml"/>
-    <include file="./scene.xml"/>
     <include file="./stair.xml"/>
+    <include file="./ramp.xml"/>
 </mujoco>

@@ -124,7 +124,7 @@ public:
         std::string mjcf_path = "";
         #ifdef BUILD_SIMULATION
             // 检测Xbox手柄是否存在
-            std::string js_device = "/dev/input/js0";
+            std::string js_device = "/dev/input/js1";
             int js_fd = open(js_device.c_str(), O_RDONLY);
             if(js_fd >= 0){
                 close(js_fd);
@@ -206,8 +206,9 @@ public:
                 time_record = ri_ptr_->GetInterfaceTimeStamp();
                 current_controller_ -> Run();
                 
-                if(current_controller_->LoseControlJudge()) next_state_name_ = StateName::kJointDamping;
-                else next_state_name_ = current_controller_ -> GetNextStateName();
+                // if(current_controller_->LoseControlJudge()) next_state_name_ = StateName::kJointDamping;
+                // else 
+                next_state_name_ = current_controller_ -> GetNextStateName();
                 
                 if(next_state_name_ != current_state_name_){
                     current_controller_ -> OnExit();

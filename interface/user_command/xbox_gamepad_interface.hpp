@@ -62,7 +62,7 @@ private:
     }
 
 public:
-    XboxGamepadInterface(const std::string& js_device = "/dev/input/js0"){
+    XboxGamepadInterface(const std::string& js_device = "/dev/input/js1"){
         std::memset(&usr_cmd_, 0, sizeof(usr_cmd_));
         js_fd_ = -1;
         std::cout << "Using Xbox Gamepad Command Interface" << std::endl;
@@ -288,7 +288,7 @@ public:
                     // every loop, including zero immediately after release.
                     float forward_input = -gp_state_.left_axis_y;
                     float side_input = -gp_state_.left_axis_x;
-                    float turning_input = -gp_state_.right_axis_y;
+                    float turning_input = -gp_state_.right_axis_x;
                     usr_cmd_.forward_vel_scale = forward_input;
                     usr_cmd_.side_vel_scale = side_input;
                     usr_cmd_.turnning_vel_scale = turning_input;
