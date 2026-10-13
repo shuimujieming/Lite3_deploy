@@ -206,9 +206,8 @@ public:
                 time_record = ri_ptr_->GetInterfaceTimeStamp();
                 current_controller_ -> Run();
                 
-                // if(current_controller_->LoseControlJudge()) next_state_name_ = StateName::kJointDamping;
-                // else 
-                next_state_name_ = current_controller_ -> GetNextStateName();
+                if(current_controller_->LoseControlJudge()) next_state_name_ = StateName::kJointDamping;
+                else next_state_name_ = current_controller_ -> GetNextStateName();
                 
                 if(next_state_name_ != current_state_name_){
                     current_controller_ -> OnExit();
