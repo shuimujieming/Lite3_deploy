@@ -155,6 +155,15 @@ target_include_directories(run_policy PUBLIC
 )
 target_link_libraries(run_policy onnxruntime)
 
+# Offline control contract test: fake robot and policy, loopback TCP only.
+option(BUILD_CONTROL_TESTS "Build navigation mode regression test" OFF)
+if(BUILD_CONTROL_TESTS)
+  enable_testing()
+  add_executable(test_navigation_mode tests/test_navigation_mode.cpp)
+  target_link_libraries(test_navigation_mode run_policy pthread)
+  add_test(NAME navigation_mode COMMAND test_navigation_mode)
+endif()
+
 # ========== 收集源文件 ==========
 file(GLOB_RECURSE STATE_MACHINE_SRC "state_machine/*.c*")
 

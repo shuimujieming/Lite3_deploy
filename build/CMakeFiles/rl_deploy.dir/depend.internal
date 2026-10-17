@@ -409,7 +409,8 @@ CMakeFiles/rl_deploy.dir/main.cpp.o
  ../utils/basic_function.hpp
  ../utils/data_streaming.hpp
  ../utils/json.hpp
- /home/shuimujieming/Lite3_deploy/main.cpp
+ ../utils/sea_nav_tcp_bridge.hpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/main.cpp
 CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o
  ../third_party/eigen/Eigen/Cholesky
  ../third_party/eigen/Eigen/Core
@@ -786,5 +787,5 @@ CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o
  ../third_party/eigen/Eigen/src/plugins/ReshapedMethods.inc
  ../types/common_types.h
  ../types/custom_types.h
- /home/shuimujieming/Lite3_deploy/state_machine/parameters/control_parameters.h
- /home/shuimujieming/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/state_machine/parameters/control_parameters.h
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp

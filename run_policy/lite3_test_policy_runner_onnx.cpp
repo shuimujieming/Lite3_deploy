@@ -111,7 +111,10 @@ Lite3TestPolicyRunnerONNX::Lite3TestPolicyRunnerONNX(std::string policy_name)
 
     kp_ = 30. * VecXf::Ones(12);
     kd_ =  1.0 * VecXf::Ones(12);
-    max_cmd_vel_ << 1.5, 1.5, 0.8;
+    max_cmd_vel_ << 0.5, 0.5, 0.8;
+    // The Lite3 locomotion observation uses physical navigation commands
+    // scaled by [lin_vel, lin_vel, ang_vel] = [2.0, 2.0, 0.25].
+    cmd_vel_scale_ << 2.0f, 2.0f, 0.25f;
 
     current_obs_.setZero();
     obs_history_.setZero();
@@ -178,7 +181,10 @@ void Lite3TestPolicyRunnerONNX::OnEnter() {
 RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro) {
     Vec3f base_omega       = ro.base_omega * omega_scale_;
     Vec3f projected_gravity = ro.base_rot_mat.inverse() * gravity_direction;
-    Vec3f cmd_vel          = ro.cmd_vel_normlized.cwiseProduct(max_cmd_vel_);
+    Vec3f cmd_vel = ro.cmd_vel_physical_valid
+                        ? ro.cmd_vel_physical
+                        : ro.cmd_vel_normlized.cwiseProduct(max_cmd_vel_);
+    cmd_vel = cmd_vel.cwiseProduct(cmd_vel_scale_);
         
     for (int i = 0; i < act_dim_; ++i) {
         joint_pos_rl(i) = ro.joint_pos(robot2policy_idx[i]);
@@ -194,7 +200,7 @@ RobotAction Lite3TestPolicyRunnerONNX::GetRobotAction(const RobotBasicState& ro)
                     joint_pos_rl,
                     joint_vel_rl,
                     last_action;
-
+    // std::cout<< cmd_vel << std::endl;
     // Initialize missing history with the first observation, then shift normally.
     if (run_cnt_ == 0) {
         for (int frame = 0; frame < history_frames_; ++frame) {

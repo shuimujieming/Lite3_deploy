@@ -120,7 +120,7 @@ public:
 
         kp_ = 30.*VecXf::Ones(12);
         kd_ = 1. *VecXf::Ones(12);
-        max_cmd_vel_ << 0.8, 0.8, 0.8;
+        max_cmd_vel_ << 0.5, 0.5, 0.8;
 
         tmp_action = VecXf(act_dim_);
         ra.goal_joint_pos = VecXf::Zero(act_dim_);
@@ -208,7 +208,7 @@ public:
                         joint_pos_rl,
                         joint_vel_rl,
                         last_action;
-
+             
         // std::cout << "observations" << std::endl;
         // for (int i = 0; i < current_obs_.size(); ++i) {
         //     std::cout << current_obs_(i) << " ";

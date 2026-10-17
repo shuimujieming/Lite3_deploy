@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shuimujieming/Lite3_deploy
+CMAKE_SOURCE_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shuimujieming/Lite3_deploy/build
+CMAKE_BINARY_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,11 +78,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles /home/shuimujieming/Lite3_deploy/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +133,19 @@ rl_deploy: cmake_check_build_system
 rl_deploy/fast:
 	$(MAKE) -f CMakeFiles/rl_deploy.dir/build.make CMakeFiles/rl_deploy.dir/build
 .PHONY : rl_deploy/fast
+
+#=============================================================================
+# Target rules for targets named test_navigation_mode
+
+# Build rule for target.
+test_navigation_mode: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_navigation_mode
+.PHONY : test_navigation_mode
+
+# fast build rule for target.
+test_navigation_mode/fast:
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/build
+.PHONY : test_navigation_mode/fast
 
 #=============================================================================
 # Target rules for targets named run_policy
@@ -230,6 +254,33 @@ state_machine/parameters/lite3_control_parameters.cpp.s:
 	$(MAKE) -f CMakeFiles/rl_deploy.dir/build.make CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.s
 .PHONY : state_machine/parameters/lite3_control_parameters.cpp.s
 
+tests/test_navigation_mode.o: tests/test_navigation_mode.cpp.o
+
+.PHONY : tests/test_navigation_mode.o
+
+# target to build an object file
+tests/test_navigation_mode.cpp.o:
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/tests/test_navigation_mode.cpp.o
+.PHONY : tests/test_navigation_mode.cpp.o
+
+tests/test_navigation_mode.i: tests/test_navigation_mode.cpp.i
+
+.PHONY : tests/test_navigation_mode.i
+
+# target to preprocess a source file
+tests/test_navigation_mode.cpp.i:
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/tests/test_navigation_mode.cpp.i
+.PHONY : tests/test_navigation_mode.cpp.i
+
+tests/test_navigation_mode.s: tests/test_navigation_mode.cpp.s
+
+.PHONY : tests/test_navigation_mode.s
+
+# target to generate assembly for a file
+tests/test_navigation_mode.cpp.s:
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/tests/test_navigation_mode.cpp.s
+.PHONY : tests/test_navigation_mode.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -238,7 +289,9 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... rl_deploy"
+	@echo "... test_navigation_mode"
 	@echo "... run_policy"
 	@echo "... interface"
 	@echo "... main.o"
@@ -250,6 +303,9 @@ help:
 	@echo "... state_machine/parameters/lite3_control_parameters.o"
 	@echo "... state_machine/parameters/lite3_control_parameters.i"
 	@echo "... state_machine/parameters/lite3_control_parameters.s"
+	@echo "... tests/test_navigation_mode.o"
+	@echo "... tests/test_navigation_mode.i"
+	@echo "... tests/test_navigation_mode.s"
 .PHONY : help
 
 

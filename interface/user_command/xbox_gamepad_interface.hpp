@@ -24,7 +24,7 @@ class XboxGamepadInterface : public UserCommandInterface
      * 左摇杆 X轴 → A/D键 (左右平移速度)
      * 左摇杆 Y轴 → W/S键 (前后移动速度)
      * 右摇杆 X轴 → Q/E键 (转向速度)
-     * 左肩键 LB → Z键 (站立)
+     * 左肩键 LB → 站立；站起后再次按 LB 进入导航模式
      * 右肩键 RB → C键 (切换到RL控制模式)
      * 左扳机 LT → R键 (关节阻尼模式)
      */
@@ -256,6 +256,9 @@ public:
             }
             
             std::lock_guard<std::mutex> lock(mtx_);
+            usr_cmd_.forward_vel_scale = 0.f;
+            usr_cmd_.side_vel_scale = 0.f;
+            usr_cmd_.turnning_vel_scale = 0.f;
             
             switch(msfb_.current_state) {
                 case RobotMotionState::WaitingForStand:
@@ -266,12 +269,13 @@ public:
                     break;
                     
                 case RobotMotionState::StandingUp:
-                    if(gp_state_.rb_pressed && !rb_prev){
+                    if(gp_state_.x_pressed && !x_prev){
+                        usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                    }else if(gp_state_.rb_pressed && !rb_prev){
                         usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
                         std::cout << "[Gamepad] RB pressed -> RLControlMode" << std::endl;
-                    }else if(gp_state_.x_pressed && !x_prev){
-                        usr_cmd_.target_mode = int(RobotMotionState::LieDown);
-                        std::cout << "[Gamepad] X pressed -> LieDown" << std::endl;
+                    }else if(gp_state_.lb_pressed && !lb_prev){
+                        usr_cmd_.target_mode = int(RobotMotionState::NavigationMode);
                     }
                     break;
                     
@@ -282,6 +286,8 @@ public:
                     }else if(gp_state_.x_pressed && !x_prev){
                         usr_cmd_.target_mode = int(RobotMotionState::LieDown);
                         std::cout << "[Gamepad] X pressed -> LieDown" << std::endl;
+                    }else if(gp_state_.lb_pressed && !lb_prev){
+                        usr_cmd_.target_mode = int(RobotMotionState::NavigationMode);
                     }
                     
                     // Match Retroid: publish the current normalized axes on
@@ -295,10 +301,21 @@ public:
                     break;
                 }
                     
+                case RobotMotionState::NavigationMode:
+                    if(gp_state_.x_pressed && !x_prev){
+                        usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                    }else if(gp_state_.rb_pressed && !rb_prev){
+                        usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
+                    }
+                    break;
                 default:
                     break;
             }
             
+            // Emergency input remains available in every mode.
+            if(gp_state_.lt_pressed){
+                usr_cmd_.target_mode = int(RobotMotionState::JointDamping);
+            }
             lb_prev = gp_state_.lb_pressed;
             rb_prev = gp_state_.rb_pressed;
             lt_prev = gp_state_.lt_pressed;

@@ -18,25 +18,34 @@
 #include "policy_runner_base.hpp"
 #include "lite3_test_policy_runner_onnx.h"
 
+#include <atomic>
+#include <mutex>
+
 
 
 class RLControlStateONNX : public StateBase
 {
 private:
     RobotBasicState rbs_;
-    int state_run_cnt_;
-
     std::shared_ptr<PolicyRunnerBase> policy_ptr_;
-    std::shared_ptr<Lite3TestPolicyRunnerONNX> test_policy_;
 
 
     
     std::thread run_policy_thread_;
-    bool start_flag_ = true;
+    std::atomic<bool> start_flag_{false};
+    std::atomic<int> state_run_cnt_{-1};
+    mutable std::mutex observation_mutex_;
+    Vec3f filtered_nav_command_ = Vec3f::Zero();
+    const Vec3f manual_max_cmd_vel_ = Vec3f(0.5f, 0.5f, 0.8f);
+    const Vec3f nav_cmd_min_ = Vec3f(-0.5f, -0.5f, -0.8f);
+    const Vec3f nav_cmd_max_ = Vec3f(0.5f, 0.5f, 0.8f);
+    const float command_filter_alpha_ = 0.5f;
+    bool navigation_mode_ = false;  // Changed only after the policy thread stops.
 
     float policy_cost_time_ = 1;
 
     void UpdateRobotObservation(){
+        std::lock_guard<std::mutex> observation_lock(observation_mutex_);
         rbs_.base_rpy     = ri_ptr_->GetImuRpy();
         rbs_.base_rot_mat = RpyToRm(rbs_.base_rpy);
         rbs_.projected_gravity = RmToProjectedGravity(rbs_.base_rot_mat);
@@ -57,23 +66,52 @@ private:
         // }
         // cmd_vel+=vel_delta;           
         // rbs_.cmd_vel_normlized = cmd_vel;
-        rbs_.cmd_vel_normlized = Vec3f(uc_ptr_->GetUserCommand().forward_vel_scale, 
-                                    uc_ptr_->GetUserCommand().side_vel_scale, 
-                                    uc_ptr_->GetUserCommand().turnning_vel_scale);
+        const auto user_command = uc_ptr_->GetUserCommand();
+        const Vec3f manual_command(user_command.forward_vel_scale,
+                                    user_command.side_vel_scale,
+                                    user_command.turnning_vel_scale);
+        rbs_.cmd_vel_normlized = navigation_mode_ ? Vec3f::Zero() : manual_command;
+
+        Vec3f requested_command = manual_command.cwiseProduct(manual_max_cmd_vel_);
+        if (navigation_mode_) {
+            requested_command.setZero();
+            if (sea_nav_ptr_) {
+                const auto tcp_command = sea_nav_ptr_->GetCommand();
+                // Navigation never falls back to joystick velocity.
+                requested_command =
+                    (tcp_command.received && tcp_command.fresh && tcp_command.enable &&
+                     !tcp_command.emergency_stop)
+                        ? tcp_command.velocity
+                        : Vec3f::Zero();
+            }
+        }
+        requested_command = requested_command.cwiseMax(nav_cmd_min_).cwiseMin(nav_cmd_max_);
+        filtered_nav_command_ = command_filter_alpha_ * requested_command +
+                                (1.0f - command_filter_alpha_) * filtered_nav_command_;
+        rbs_.cmd_vel_physical = filtered_nav_command_;
+        rbs_.cmd_vel_physical_valid = true;
+        if (sea_nav_ptr_) sea_nav_ptr_->SetAppliedNavCommand(filtered_nav_command_);
         
     }
 
     void PolicyRunner(){
         int run_cnt_record = -1;
-        while (start_flag_){
+        while (start_flag_.load(std::memory_order_acquire)){
+            const int state_run_cnt = state_run_cnt_.load(std::memory_order_acquire);
             
-            if(state_run_cnt_%policy_ptr_->decimation_ == 0 && state_run_cnt_ != run_cnt_record){
+            if(state_run_cnt >= 0 && state_run_cnt%policy_ptr_->decimation_ == 0 &&
+               state_run_cnt != run_cnt_record){
                 timespec start_timestamp, end_timestamp;
                 clock_gettime(CLOCK_MONOTONIC,&start_timestamp);
-                auto ra = policy_ptr_->GetRobotAction(rbs_);
+                RobotBasicState observation;
+                {
+                    std::lock_guard<std::mutex> observation_lock(observation_mutex_);
+                    observation = rbs_;
+                }
+                auto ra = policy_ptr_->GetRobotAction(observation);
                 MatXf res = ra.ConvertToMat();
                 ri_ptr_->SetJointCommand(res); // (current torque, not last torque, video content slip of the tongue)
-                run_cnt_record = state_run_cnt_;
+                run_cnt_record = state_run_cnt;
                 clock_gettime(CLOCK_MONOTONIC,&end_timestamp);
                 policy_cost_time_ = (end_timestamp.tv_sec-start_timestamp.tv_sec)*1e3 
                                     +(end_timestamp.tv_nsec-start_timestamp.tv_nsec)/1e6;
@@ -85,10 +123,13 @@ private:
 
 public:
     RLControlStateONNX(const RobotType& robot_type, const std::string& state_name, 
-        std::shared_ptr<ControllerData> data_ptr):StateBase(robot_type, state_name, data_ptr){
-        std::memset(&rbs_, 0, sizeof(rbs_));
-        test_policy_ = std::make_shared<Lite3TestPolicyRunnerONNX>("test_onnx");
-        policy_ptr_ = test_policy_;
+        std::shared_ptr<ControllerData> data_ptr,
+        std::shared_ptr<PolicyRunnerBase> policy = nullptr):StateBase(robot_type, state_name, data_ptr){
+        rbs_.cmd_vel_normlized = Vec3f::Zero();
+        rbs_.cmd_vel_physical = Vec3f::Zero();
+        rbs_.cmd_vel_physical_valid = false;
+        policy_ptr_ = policy ? std::move(policy)
+                            : std::make_shared<Lite3TestPolicyRunnerONNX>("test_onnx");
         if(!policy_ptr_){
             std::cerr << "[ERROR] Failed to initialize ONNX policy runner." << std::endl;
             exit(0);
@@ -97,29 +138,42 @@ public:
         }
     ~RLControlStateONNX(){}
 
+    void SetNavigationMode(bool enabled) {
+        navigation_mode_ = enabled;
+        state_name_ = enabled ? "navigation" : "rl_control";
+    }
+
     virtual void OnEnter() {
-        state_run_cnt_ = -1;
-        start_flag_ = true;
-        run_policy_thread_ = std::thread(std::bind(&RLControlStateONNX::PolicyRunner, this));
+        if (navigation_mode_ && sea_nav_ptr_) sea_nav_ptr_->ClearCommand();
         policy_ptr_->OnEnter();
-        StateBase::msfb_.UpdateCurrentState(RobotMotionState::RLControlMode);
+        {
+            std::lock_guard<std::mutex> observation_lock(observation_mutex_);
+            filtered_nav_command_.setZero();
+        }
+        state_run_cnt_.store(-1, std::memory_order_release);
+        start_flag_.store(true, std::memory_order_release);
+        run_policy_thread_ = std::thread(std::bind(&RLControlStateONNX::PolicyRunner, this));
+        StateBase::msfb_.UpdateCurrentState(navigation_mode_
+            ? RobotMotionState::NavigationMode : RobotMotionState::RLControlMode);
         uc_ptr_->SetMotionStateFeedback(StateBase::msfb_);
     };
 
     virtual void OnExit() { 
-        start_flag_ = false;
-        run_policy_thread_.join();
-        state_run_cnt_ = -1;
+        start_flag_.store(false, std::memory_order_release);
+        if (run_policy_thread_.joinable()) run_policy_thread_.join();
+        state_run_cnt_.store(-1, std::memory_order_release);
+        if (sea_nav_ptr_) sea_nav_ptr_->SetAppliedNavCommand(Vec3f::Zero());
     }
 
     virtual void Run() {
         UpdateRobotObservation();
         ds_ptr_->InsertScopeData(0, policy_cost_time_);
-        state_run_cnt_++;
+        state_run_cnt_.fetch_add(1, std::memory_order_release);
     }
 
     virtual bool LoseControlJudge() {
         if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::JointDamping)) return true;
+        if(navigation_mode_ && sea_nav_ptr_ && sea_nav_ptr_->IsEmergencyStopActive()) return true;
         return PostureUnsafeCheck();
     }
 
@@ -134,6 +188,8 @@ public:
 
     virtual StateName GetNextStateName() {
         if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::LieDown)) return StateName::kLieDown;
-        return StateName::kRLControl;
+        if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::NavigationMode)) return StateName::kNavigation;
+        if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::RLControlMode)) return StateName::kRLControl;
+        return navigation_mode_ ? StateName::kNavigation : StateName::kRLControl;
     }
 };

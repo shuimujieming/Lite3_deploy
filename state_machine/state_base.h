@@ -17,6 +17,7 @@
 #include "data_streaming.hpp"
 #include "basic_function.hpp"
 #include "parameters/control_parameters.h"
+#include "sea_nav_tcp_bridge.hpp"
 
 using namespace types;
 using namespace interface;
@@ -27,6 +28,7 @@ struct ControllerData{
     std::shared_ptr<UserCommandInterface> uc_ptr;
     std::shared_ptr<ControlParameters> cp_ptr;
     std::shared_ptr<DataStreaming> ds_ptr;
+    std::shared_ptr<SeaNavTcpBridge> sea_nav_ptr;
 };
 
 
@@ -43,6 +45,7 @@ public:
             uc_ptr_ = data_ptr_->uc_ptr;
             cp_ptr_ = data_ptr_->cp_ptr;
             ds_ptr_ = data_ptr_->ds_ptr;
+            sea_nav_ptr_ = data_ptr_->sea_nav_ptr;
             std::memset(&msfb_, 0, sizeof(msfb_));
         }
 
@@ -91,6 +94,7 @@ public:
     std::shared_ptr<UserCommandInterface> uc_ptr_;  //control your robot by design user command
     std::shared_ptr<ControlParameters> cp_ptr_;     //control parameters
     std::shared_ptr<DataStreaming> ds_ptr_;         //for data record
+    std::shared_ptr<SeaNavTcpBridge> sea_nav_ptr_;  //SEA-Nav motion-host bridge
 
     static MotionStateFeedback msfb_;               //robot current motion state
 };

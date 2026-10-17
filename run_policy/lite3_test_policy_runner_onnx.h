@@ -55,6 +55,7 @@ private:
     VecXf dof_pos_default_robot, dof_pos_default_policy;
     VecXf kp_, kd_;
     Vec3f max_cmd_vel_;
+    Vec3f cmd_vel_scale_;
     Vec3f gravity_direction;
 
     std::vector<int> robot2policy_idx, policy2robot_idx;

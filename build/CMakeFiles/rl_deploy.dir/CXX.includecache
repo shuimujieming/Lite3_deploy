@@ -141,6 +141,10 @@ policy_runner_base.hpp
 ../state_machine/policy_runner_base.hpp
 lite3_test_policy_runner_onnx.h
 ../state_machine/lite3_test_policy_runner_onnx.h
+atomic
+-
+mutex
+-
 
 ../state_machine/standup_state.hpp
 state_base.h
@@ -161,6 +165,8 @@ basic_function.hpp
 ../state_machine/basic_function.hpp
 parameters/control_parameters.h
 ../state_machine/parameters/control_parameters.h
+sea_nav_tcp_bridge.hpp
+../state_machine/sea_nav_tcp_bridge.hpp
 
 ../state_machine/state_machine.hpp
 state_base.h
@@ -3348,9 +3354,47 @@ any
 string_view
 -
 
-/home/shuimujieming/Lite3_deploy/main.cpp
+../utils/sea_nav_tcp_bridge.hpp
+common_types.h
+../utils/common_types.h
+json.hpp
+../utils/json.hpp
+algorithm
+-
+array
+-
+atomic
+-
+chrono
+-
+cmath
+-
+cstring
+-
+iostream
+-
+arpa/inet.h
+-
+cerrno
+-
+mutex
+-
+netinet/in.h
+-
+string
+-
+sys/select.h
+-
+sys/socket.h
+-
+thread
+-
+unistd.h
+-
+
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/main.cpp
 state_machine.hpp
-/home/shuimujieming/Lite3_deploy/state_machine.hpp
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/state_machine.hpp
 backward.hpp
-/home/shuimujieming/Lite3_deploy/backward.hpp
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/backward.hpp
 

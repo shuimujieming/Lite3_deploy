@@ -1,4 +1,4 @@
-# Install script for directory: /home/shuimujieming/Lite3_deploy/interface
+# Install script for directory: /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/interface
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

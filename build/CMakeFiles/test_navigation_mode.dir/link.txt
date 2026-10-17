@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/test_navigation_mode.dir/tests/test_navigation_mode.cpp.o  -o test_navigation_mode   -L/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/onnxruntime/x86/lib  -Wl,-rpath,/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/onnxruntime/x86/lib librun_policy.a -lpthread -lonnxruntime 

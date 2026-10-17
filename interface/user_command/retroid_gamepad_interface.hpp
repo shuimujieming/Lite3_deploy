@@ -74,26 +74,38 @@ void RetroidGamepadInterface::TransformRetroidToUserCommand(){
             first_flag_ = false;
             continue;
         }
-        usr_cmd_.forward_vel_scale = rt_keys_.left_axis_y;
-        usr_cmd_.side_vel_scale = -rt_keys_.left_axis_x;
-        usr_cmd_.turnning_vel_scale = -rt_keys_.right_axis_x;
+        const bool manual = msfb_.current_state == RobotMotionState::RLControlMode;
+        usr_cmd_.forward_vel_scale = manual ? rt_keys_.left_axis_y : 0.f;
+        usr_cmd_.side_vel_scale = manual ? -rt_keys_.left_axis_x : 0.f;
+        usr_cmd_.turnning_vel_scale = manual ? -rt_keys_.right_axis_x : 0.f;
         if (!IsKeysEqual(rt_keys_, rt_keys_record_)) {
             switch (msfb_.current_state){
             case RobotMotionState::WaitingForStand:
-                if(rt_keys_.Y != rt_keys_record_.Y) {
+                if(rt_keys_.Y && !rt_keys_record_.Y) {
                     usr_cmd_.target_mode = int(RobotMotionState::StandingUp); 
                 }
                 break;
             case RobotMotionState::StandingUp:
-                if(rt_keys_.A != rt_keys_record_.A){
-                    usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
-                }else if(rt_keys_.X != rt_keys_record_.X){
+                if(rt_keys_.X && !rt_keys_record_.X){
                     usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                }else if(rt_keys_.A && !rt_keys_record_.A){
+                    usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
+                }else if(rt_keys_.B && !rt_keys_record_.B){
+                    usr_cmd_.target_mode = int(RobotMotionState::NavigationMode);
                 }
                 break;
             case RobotMotionState::RLControlMode:
-                if(rt_keys_.X != rt_keys_record_.X){
+                if(rt_keys_.X && !rt_keys_record_.X){
                     usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                }else if(rt_keys_.B && !rt_keys_record_.B){
+                    usr_cmd_.target_mode = int(RobotMotionState::NavigationMode);
+                }
+                break;
+            case RobotMotionState::NavigationMode:
+                if(rt_keys_.X && !rt_keys_record_.X){
+                    usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                }else if(rt_keys_.A && !rt_keys_record_.A){
+                    usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
                 }
                 break;
             

@@ -15,6 +15,7 @@ namespace types{
         LieDown         = 3,
 
         RLControlMode   = 6,
+        NavigationMode  = 7,
     };
 
     enum StateName{
@@ -25,6 +26,7 @@ namespace types{
         kLieDown      = 3,
 
         kRLControl    = 6,
+        kNavigation   = 7,
     };
     
 

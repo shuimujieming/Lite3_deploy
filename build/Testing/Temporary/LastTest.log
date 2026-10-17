@@ -1,0 +1,22 @@
+Start testing: Oct 15 11:51 CST
+----------------------------------------------------------
+1/1 Testing: navigation_mode
+1/1 Test: navigation_mode
+Command: "/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/test_navigation_mode"
+Directory: /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build
+"navigation_mode" start time: Oct 15 11:51 CST
+Output:
+----------------------------------------------------------
+[SEA-Nav TCP] listening on 127.0.0.1:41341
+[SEA-Nav TCP] perception host connected
+posture value: 34.3775       0       0
+Navigation mode regression passed
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"navigation_mode" end time: Oct 15 11:51 CST
+"navigation_mode" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 15 11:51 CST

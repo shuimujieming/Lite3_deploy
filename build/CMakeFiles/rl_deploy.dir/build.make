@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shuimujieming/Lite3_deploy
+CMAKE_SOURCE_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shuimujieming/Lite3_deploy/build
+CMAKE_BINARY_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/rl_deploy.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/rl_deploy.dir/flags.make
 
 CMakeFiles/rl_deploy.dir/main.cpp.o: CMakeFiles/rl_deploy.dir/flags.make
 CMakeFiles/rl_deploy.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/rl_deploy.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rl_deploy.dir/main.cpp.o -c /home/shuimujieming/Lite3_deploy/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/rl_deploy.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rl_deploy.dir/main.cpp.o -c /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/main.cpp
 
 CMakeFiles/rl_deploy.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rl_deploy.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shuimujieming/Lite3_deploy/main.cpp > CMakeFiles/rl_deploy.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/main.cpp > CMakeFiles/rl_deploy.dir/main.cpp.i
 
 CMakeFiles/rl_deploy.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rl_deploy.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shuimujieming/Lite3_deploy/main.cpp -o CMakeFiles/rl_deploy.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/main.cpp -o CMakeFiles/rl_deploy.dir/main.cpp.s
 
 CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o: CMakeFiles/rl_deploy.dir/flags.make
 CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o: ../state_machine/parameters/lite3_control_parameters.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o -c /home/shuimujieming/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.o -c /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp
 
 CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shuimujieming/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp > CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp > CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.i
 
 CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shuimujieming/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp -o CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/state_machine/parameters/lite3_control_parameters.cpp -o CMakeFiles/rl_deploy.dir/state_machine/parameters/lite3_control_parameters.cpp.s
 
 # Object files for target rl_deploy
 rl_deploy_OBJECTS = \
@@ -98,7 +98,7 @@ rl_deploy: librun_policy.a
 rl_deploy: interface/libinterface.a
 rl_deploy: ../third_party/Lite3_MotionSDK/lib/libdeeprobotics_legged_sdk_x86_64.so
 rl_deploy: CMakeFiles/rl_deploy.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable rl_deploy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable rl_deploy"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rl_deploy.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -111,6 +111,6 @@ CMakeFiles/rl_deploy.dir/clean:
 .PHONY : CMakeFiles/rl_deploy.dir/clean
 
 CMakeFiles/rl_deploy.dir/depend:
-	cd /home/shuimujieming/Lite3_deploy/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shuimujieming/Lite3_deploy /home/shuimujieming/Lite3_deploy /home/shuimujieming/Lite3_deploy/build /home/shuimujieming/Lite3_deploy/build /home/shuimujieming/Lite3_deploy/build/CMakeFiles/rl_deploy.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shuimujieming/SEA-Nav-Code/Lite3_deploy /home/shuimujieming/SEA-Nav-Code/Lite3_deploy /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/rl_deploy.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rl_deploy.dir/depend
 

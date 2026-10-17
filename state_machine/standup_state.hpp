@@ -143,6 +143,8 @@ public:
             if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::RLControlMode)){
                 return StateName::kRLControl;
                 std::cout << "stand up success" << std::endl;
+            }else if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::NavigationMode)){
+                return StateName::kNavigation;
             }else if(uc_ptr_->GetUserCommand().target_mode == int(RobotMotionState::LieDown)){
                 return StateName::kLieDown;
             }

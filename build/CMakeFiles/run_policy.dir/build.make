@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shuimujieming/Lite3_deploy
+CMAKE_SOURCE_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shuimujieming/Lite3_deploy/build
+CMAKE_BINARY_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/run_policy.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/run_policy.dir/flags.make
 
 CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o: CMakeFiles/run_policy.dir/flags.make
 CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o: ../run_policy/lite3_test_policy_runner_onnx.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o -c /home/shuimujieming/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o -c /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp
 
 CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shuimujieming/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp > CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp > CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.i
 
 CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shuimujieming/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp -o CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/run_policy/lite3_test_policy_runner_onnx.cpp -o CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.s
 
 # Object files for target run_policy
 run_policy_OBJECTS = \
@@ -80,7 +80,7 @@ run_policy_EXTERNAL_OBJECTS =
 librun_policy.a: CMakeFiles/run_policy.dir/run_policy/lite3_test_policy_runner_onnx.cpp.o
 librun_policy.a: CMakeFiles/run_policy.dir/build.make
 librun_policy.a: CMakeFiles/run_policy.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library librun_policy.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library librun_policy.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/run_policy.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/run_policy.dir/link.txt --verbose=$(VERBOSE)
 
@@ -94,6 +94,6 @@ CMakeFiles/run_policy.dir/clean:
 .PHONY : CMakeFiles/run_policy.dir/clean
 
 CMakeFiles/run_policy.dir/depend:
-	cd /home/shuimujieming/Lite3_deploy/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shuimujieming/Lite3_deploy /home/shuimujieming/Lite3_deploy /home/shuimujieming/Lite3_deploy/build /home/shuimujieming/Lite3_deploy/build /home/shuimujieming/Lite3_deploy/build/CMakeFiles/run_policy.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shuimujieming/SEA-Nav-Code/Lite3_deploy /home/shuimujieming/SEA-Nav-Code/Lite3_deploy /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/run_policy.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run_policy.dir/depend
 

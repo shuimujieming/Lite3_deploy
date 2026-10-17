@@ -60,6 +60,9 @@ public:
         // std::lock_guard<std::mutex> lock(mtx_);
         msfb_ = msfb;
         usr_cmd_.target_mode = msfb.current_state;
+        usr_cmd_.forward_vel_scale = 0.f;
+        usr_cmd_.side_vel_scale = 0.f;
+        usr_cmd_.turnning_vel_scale = 0.f;
     }
 
 
@@ -97,6 +100,8 @@ public:
                     case RobotMotionState::StandingUp:
                         if(input=='c'){
                             usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
+                        }else if(input=='n'){
+                            usr_cmd_.target_mode = int(RobotMotionState::NavigationMode);
                         }else if(input=='x' || input=='X'){
                             usr_cmd_.target_mode = int(RobotMotionState::LieDown);
                         }
@@ -104,6 +109,8 @@ public:
                     case RobotMotionState::RLControlMode:
                         if(input=='x' || input=='X'){
                             usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                        }else if(input=='n'){
+                            usr_cmd_.target_mode = int(RobotMotionState::NavigationMode);
                         }
                         if(input=='w') {
                             usr_cmd_.forward_vel_scale+=AXIS_STEP;
@@ -140,6 +147,13 @@ public:
                         ClipNumber(usr_cmd_.forward_vel_scale, -1., 1.);
                         ClipNumber(usr_cmd_.side_vel_scale, -1., 1.);
                         ClipNumber(usr_cmd_.turnning_vel_scale, -1., 1.);
+                    break;
+                    case RobotMotionState::NavigationMode:
+                        if(input=='c'){
+                            usr_cmd_.target_mode = int(RobotMotionState::RLControlMode);
+                        }else if(input=='x' || input=='X'){
+                            usr_cmd_.target_mode = int(RobotMotionState::LieDown);
+                        }
                     break;
                     default:
                         break;

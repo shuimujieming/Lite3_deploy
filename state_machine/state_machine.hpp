@@ -49,7 +49,7 @@ private:
     std::shared_ptr<StateBase> current_controller_;
     std::shared_ptr<StateBase> idle_controller_;
     std::shared_ptr<StateBase> standup_controller_;
-    std::shared_ptr<StateBase> rl_controller_;
+    std::shared_ptr<RLControlStateONNX> rl_controller_;
     std::shared_ptr<StateBase> joint_damping_controller_;
     std::shared_ptr<StateBase> liedown_controller_;
 
@@ -60,6 +60,18 @@ private:
     std::shared_ptr<ControlParameters> cp_ptr_;
 
     std::shared_ptr<DataStreaming> ds_ptr_;
+    std::shared_ptr<SeaNavTcpBridge> sea_nav_ptr_;
+
+    void UpdateSeaNavMotionState() {
+        if (!ri_ptr_ || !sea_nav_ptr_) return;
+        const Vec3f rpy = ri_ptr_->GetImuRpy();
+        const Vec3f projected_gravity = RmToProjectedGravity(RpyToRm(rpy));
+        const bool enabled = current_state_name_ == StateName::kNavigation;
+        const bool standing = enabled || current_state_name_ == StateName::kRLControl;
+        sea_nav_ptr_->SetMotionState(projected_gravity,
+                                     sea_nav_ptr_->GetAppliedNavCommand(),
+                                     enabled, standing);
+    }
 
     void GetDataStreaming(){
         if(!ri_ptr_) return;
@@ -103,6 +115,11 @@ private:
                 return standup_controller_;
             }
             case StateName::kRLControl:{
+                rl_controller_->SetNavigationMode(false);
+                return rl_controller_;
+            }
+            case StateName::kNavigation:{
+                rl_controller_->SetNavigationMode(true);
                 return rl_controller_;
             }
             case StateName::kJointDamping:{
@@ -165,6 +182,8 @@ public:
         data_ptr->cp_ptr = cp_ptr_;
         ds_ptr_ = std::make_shared<DataStreaming>(false, false);
         data_ptr->ds_ptr = ds_ptr_;
+        sea_nav_ptr_ = std::make_shared<SeaNavTcpBridge>("0.0.0.0", 29001, 0.25, 0.02);
+        data_ptr->sea_nav_ptr = sea_nav_ptr_;
 
         idle_controller_ = std::make_shared<IdleState>(robot_type, "idle_state", data_ptr);
         standup_controller_ = std::make_shared<StandUpState>(robot_type, "standup_state", data_ptr);
@@ -193,10 +212,15 @@ public:
         ri_ptr_->Start();
         std::cout << "Robot interface started" << std::endl;
         uc_ptr_->Start();
+        sea_nav_ptr_->Start();
+        std::cout << "SEA-Nav TCP bridge started on 0.0.0.0:29001" << std::endl;
         
         current_controller_->OnEnter();  
+        UpdateSeaNavMotionState();
     }
-    ~StateMachine(){}
+    ~StateMachine(){
+        if (sea_nav_ptr_) sea_nav_ptr_->Stop();
+    }
 
     void Run(){
         int cnt = 0;
@@ -217,6 +241,7 @@ public:
                     current_controller_ ->OnEnter();
                     current_state_name_ = next_state_name_; 
                 }
+                UpdateSeaNavMotionState();
                 ++cnt;
                 this->GetDataStreaming();
             }

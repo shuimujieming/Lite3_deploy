@@ -143,12 +143,69 @@ python pt2onnx.py
 
 ## 各模块介绍
 
+### SEA-Nav 感知主机 TCP 接口
+
+`rl_deploy` 内置一个纯 TCP server，用于连接运行 ROS1/A-LOAM 的感知主机，默认监听
+`0.0.0.0:29001`。协议是 UTF-8、换行分隔的 JSON，不依赖 ROS。
+
+感知主机发送导航命令（单位为 m/s、m/s、rad/s）：
+
+```json
+{"version":1,"type":"nav_command","stamp":1710000000.14,
+ "vx":0.4,"vy":0.0,"vyaw":0.1,"enable":true,"emergency_stop":false}
+```
+
+运动主机周期回传策略观测需要的状态：
+
+```json
+{"version":1,"type":"motion_state","stamp":1710000000.12,
+ "projected_gravity":[0.0,0.0,-1.0],
+ "last_nav_command":[0.2,0.0,0.0],"enabled":true,"standing":true}
+```
+
+Lite3 侧会把命令限幅到 `vx[-0.5,0.5]`、`vy[-0.5,0.5]`、
+`vyaw[-0.8,0.8]`，再以 `alpha=0.5` 滤波。控制来源由机器人本地模式决定：
+
+| 模式 | 速度来源 | 摇杆方向 | TCP 状态 |
+| --- | --- | --- | --- |
+| RLControl（6） | 遥控器 | 有效 | 忽略 TCP 速度和远端急停请求 |
+| Navigation（7） | SEA-Nav TCP | 禁用 | 无有效命令、超时或 `enable=false` 时目标速度为零，经滤波减速 |
+
+导航模式的 `emergency_stop=true` 会切换到关节阻尼。进入导航时清除先前 TCP
+命令，等待新命令；退出导航后恢复遥控。两种模式共用同一份底层 ONNX 运控模型。
+本地阻尼、趴下按键和姿态保护始终有效。
+
+Retroid 按键（按下触发）：
+
+| 按键 | 功能 |
+| --- | --- |
+| Y | 从等待状态站起 |
+| A | 站起后进入 RL 遥控；从导航返回 RL 遥控 |
+| B | 站起后或 RL 模式下进入导航 |
+| X | 站起后、RL 或导航模式下趴下 |
+| 双摇杆按下 | 进入关节阻尼 |
+
+仿真键盘：`z` 站起、`c` 遥控 RL、`n` 导航、`x` 趴下、`r` 阻尼。
+Xbox：LB 站起，站起后再次按 LB 进入导航；RB 进入/返回遥控 RL；X 趴下；LT 阻尼。
+真机默认使用 Retroid；Skydroid 接口未配置导航按键。
+
+回传 `enabled=true` 仅表示导航模式，`standing=true` 表示 RL 或导航模式。
+RL 模式回传 `enabled=false, standing=true`，感知主机据此暂停有效导航命令。
+`last_nav_command` 始终是当前实际应用的滤波速度，包括遥控模式速度。
+
+感知主机应能访问运动主机的 `29001/tcp` 端口。运动主机上的防火墙、网卡地址
+或端口变化时，修改 `state_machine/state_machine.hpp` 中的 bridge 构造参数后重新编译。
+
 ### state_machine
 
 
 ```mermaid
 graph LR
 A(Idle) -->B(StandUp) --> C(RL) 
+C<-->N(Navigation)
+B-->N
+N-->D
+N-->E
 C-->D(JointDamping)
 B-->D
 B-->E(LieDown)
@@ -165,11 +222,13 @@ state_machine模块是Lite3在不同的状态之间来回切换，不同的状�
 
 2.StandUp 站起状态，表示机器狗从趴下到站起的动作
 
-3.RL RL控制状态，表示机器狗执行策略输出的action
+3.RL 遥控状态，摇杆速度输入底层运控策略
 
 4.JointDamping 关节阻尼状态，表示机器狗的关节处于阻尼控制状态
 
 5.LieDown 趴下状态，表示机器狗从站立状态切换到趴下状态，动作完成后回到Idle
+
+6.Navigation 导航状态，SEA-Nav TCP 速度输入底层运控策略，忽略摇杆方向
 
 ### interface
 

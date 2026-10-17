@@ -40,6 +40,11 @@ namespace types{
         Vec3f base_omega;
         Vec3f base_acc;
         Vec3f cmd_vel_normlized; //vel_x, vel_y, turnning_vel
+        // Physical navigation command in m/s, m/s, rad/s.  This is kept
+        // separate from the legacy normalized gamepad command so the ONNX
+        // runner can use the same units as SEA-Nav training.
+        Vec3f cmd_vel_physical;
+        bool cmd_vel_physical_valid;
         VecXf joint_pos;
         VecXf joint_vel;
         VecXf joint_tau;

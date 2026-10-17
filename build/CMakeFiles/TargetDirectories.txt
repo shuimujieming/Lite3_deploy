@@ -1,7 +1,10 @@
-/home/shuimujieming/Lite3_deploy/build/CMakeFiles/rebuild_cache.dir
-/home/shuimujieming/Lite3_deploy/build/CMakeFiles/edit_cache.dir
-/home/shuimujieming/Lite3_deploy/build/CMakeFiles/rl_deploy.dir
-/home/shuimujieming/Lite3_deploy/build/CMakeFiles/run_policy.dir
-/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/rebuild_cache.dir
-/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/edit_cache.dir
-/home/shuimujieming/Lite3_deploy/build/interface/CMakeFiles/interface.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/rebuild_cache.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/edit_cache.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/test.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/rl_deploy.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/test_navigation_mode.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles/run_policy.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/interface/CMakeFiles/rebuild_cache.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/interface/CMakeFiles/edit_cache.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/interface/CMakeFiles/test.dir
+/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/interface/CMakeFiles/interface.dir

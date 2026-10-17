@@ -1,4 +1,4 @@
-# Install script for directory: /home/shuimujieming/Lite3_deploy
+# Install script for directory: /home/shuimujieming/SEA-Nav-Code/Lite3_deploy
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/shuimujieming/Lite3_deploy/build/interface/cmake_install.cmake")
+  include("/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/interface/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/shuimujieming/Lite3_deploy/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

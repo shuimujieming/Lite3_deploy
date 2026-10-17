@@ -44,16 +44,17 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shuimujieming/Lite3_deploy
+CMAKE_SOURCE_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shuimujieming/Lite3_deploy/build
+CMAKE_BINARY_DIR = /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
 all: CMakeFiles/rl_deploy.dir/all
+all: CMakeFiles/test_navigation_mode.dir/all
 all: CMakeFiles/run_policy.dir/all
 all: interface/all
 
@@ -66,6 +67,7 @@ preinstall: interface/preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/rl_deploy.dir/clean
+clean: CMakeFiles/test_navigation_mode.dir/clean
 clean: CMakeFiles/run_policy.dir/clean
 clean: interface/clean
 
@@ -97,14 +99,14 @@ CMakeFiles/rl_deploy.dir/all: CMakeFiles/run_policy.dir/all
 CMakeFiles/rl_deploy.dir/all: interface/CMakeFiles/interface.dir/all
 	$(MAKE) -f CMakeFiles/rl_deploy.dir/build.make CMakeFiles/rl_deploy.dir/depend
 	$(MAKE) -f CMakeFiles/rl_deploy.dir/build.make CMakeFiles/rl_deploy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=7,8,9 "Built target rl_deploy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=7,8,9 "Built target rl_deploy"
 .PHONY : CMakeFiles/rl_deploy.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rl_deploy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 11
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rl_deploy.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 0
 .PHONY : CMakeFiles/rl_deploy.dir/rule
 
 # Convenience name for target.
@@ -118,20 +120,47 @@ CMakeFiles/rl_deploy.dir/clean:
 .PHONY : CMakeFiles/rl_deploy.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/test_navigation_mode.dir
+
+# All Build rule for target.
+CMakeFiles/test_navigation_mode.dir/all: CMakeFiles/run_policy.dir/all
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/depend
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=12,13 "Built target test_navigation_mode"
+.PHONY : CMakeFiles/test_navigation_mode.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_navigation_mode.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_navigation_mode.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_navigation_mode.dir/rule
+
+# Convenience name for target.
+test_navigation_mode: CMakeFiles/test_navigation_mode.dir/rule
+
+.PHONY : test_navigation_mode
+
+# clean rule for target.
+CMakeFiles/test_navigation_mode.dir/clean:
+	$(MAKE) -f CMakeFiles/test_navigation_mode.dir/build.make CMakeFiles/test_navigation_mode.dir/clean
+.PHONY : CMakeFiles/test_navigation_mode.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/run_policy.dir
 
 # All Build rule for target.
 CMakeFiles/run_policy.dir/all:
 	$(MAKE) -f CMakeFiles/run_policy.dir/build.make CMakeFiles/run_policy.dir/depend
 	$(MAKE) -f CMakeFiles/run_policy.dir/build.make CMakeFiles/run_policy.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=10,11 "Built target run_policy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=10,11 "Built target run_policy"
 .PHONY : CMakeFiles/run_policy.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/run_policy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/run_policy.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 0
 .PHONY : CMakeFiles/run_policy.dir/rule
 
 # Convenience name for target.
@@ -151,14 +180,14 @@ CMakeFiles/run_policy.dir/clean:
 interface/CMakeFiles/interface.dir/all:
 	$(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/depend
 	$(MAKE) -f interface/CMakeFiles/interface.dir/build.make interface/CMakeFiles/interface.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/Lite3_deploy/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target interface"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target interface"
 .PHONY : interface/CMakeFiles/interface.dir/all
 
 # Build rule for subdir invocation for target.
 interface/CMakeFiles/interface.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 interface/CMakeFiles/interface.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/Lite3_deploy/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/build/CMakeFiles 0
 .PHONY : interface/CMakeFiles/interface.dir/rule
 
 # Convenience name for target.

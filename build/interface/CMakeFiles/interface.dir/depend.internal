@@ -381,22 +381,22 @@ interface/CMakeFiles/interface.dir/__/third_party/Lite3_MotionSDK/src/motionexam
  ../third_party/eigen/Eigen/src/plugins/MatrixCwiseBinaryOps.inc
  ../third_party/eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.inc
  ../third_party/eigen/Eigen/src/plugins/ReshapedMethods.inc
- /home/shuimujieming/Lite3_deploy/third_party/Lite3_MotionSDK/src/motionexample.cpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/Lite3_MotionSDK/src/motionexample.cpp
 interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/gamepad.cpp.o
  ../third_party/gamepad/include/gamepad.h
  ../third_party/gamepad/include/gamepad_keys.h
  ../third_party/gamepad/include/udp_receiver.h
- /home/shuimujieming/Lite3_deploy/third_party/gamepad/src/gamepad.cpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/gamepad/src/gamepad.cpp
 interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/retroid_gamepad.cpp.o
  ../third_party/gamepad/include/gamepad.h
  ../third_party/gamepad/include/gamepad_keys.h
  ../third_party/gamepad/include/retroid_gamepad.h
- /home/shuimujieming/Lite3_deploy/third_party/gamepad/src/retroid_gamepad.cpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/gamepad/src/retroid_gamepad.cpp
 interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/skydroid_gamepad.cpp.o
  ../third_party/gamepad/include/gamepad.h
  ../third_party/gamepad/include/gamepad_keys.h
  ../third_party/gamepad/include/skydroid_gamepad.h
- /home/shuimujieming/Lite3_deploy/third_party/gamepad/src/skydroid_gamepad.cpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/gamepad/src/skydroid_gamepad.cpp
 interface/CMakeFiles/interface.dir/__/third_party/gamepad/src/udp_receiver.cpp.o
  ../third_party/gamepad/include/udp_receiver.h
- /home/shuimujieming/Lite3_deploy/third_party/gamepad/src/udp_receiver.cpp
+ /home/shuimujieming/SEA-Nav-Code/Lite3_deploy/third_party/gamepad/src/udp_receiver.cpp

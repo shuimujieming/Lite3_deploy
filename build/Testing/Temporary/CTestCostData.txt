@@ -1,0 +1,2 @@
+navigation_mode 1 0.0630561
+---
